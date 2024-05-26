@@ -7,10 +7,6 @@ import dao.Persistente;
 
 @Tabela("TB_CLIENTE")
 public class Cliente implements Persistente {
-    @Override
-    public void setId(long aLong) {
-
-    }
 
     @ColunaTabela(dbName = "id", setJavaName = "setId")
     private Long id;
@@ -86,9 +82,4 @@ public class Cliente implements Persistente {
         this.id = id;
     }
 
-
-    @Override
-    public String getCodigo() {
-        return getCodigo();
-    }
 }

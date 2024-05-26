@@ -57,10 +57,6 @@ public class Venda implements Persistente {
         return codigo;
     }
 
-    @Override
-    public void setId(long aLong) {
-
-    }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;

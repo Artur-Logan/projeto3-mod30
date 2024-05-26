@@ -2,7 +2,7 @@ package dao;
 
 public interface Persistente {
 
-    public String getCodigo();
+    public Long getId();
 
-    void setId(long aLong);
+    public void setId(Long id);
 }

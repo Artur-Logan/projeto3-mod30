@@ -63,14 +63,7 @@ public class Produto implements Persistente {
         this.valor = valor;
     }
 
-
-    @Override
     public String getCodigo() {
-        return String.valueOf(0);
-    }
-
-    @Override
-    public void setId(long aLong) {
-
+        return codigo;
     }
 }
