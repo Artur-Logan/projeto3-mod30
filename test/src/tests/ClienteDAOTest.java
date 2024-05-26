@@ -41,6 +41,7 @@ public class ClienteDAOTest {
         Cliente cliente = new Cliente();
         cliente.setCpf(12312312312L);
         cliente.setNome("Rodrigo");
+        cliente.setSobrenome("Pires");
         cliente.setCidade("São Paulo");
         cliente.setEnd("End");
         cliente.setEstado("SP");
@@ -59,6 +60,7 @@ public class ClienteDAOTest {
         Cliente cliente = new Cliente();
         cliente.setCpf(56565656565L);
         cliente.setNome("Rodrigo");
+        cliente.setSobrenome("Pires");
         cliente.setCidade("São Paulo");
         cliente.setEnd("End");
         cliente.setEstado("SP");
@@ -79,6 +81,7 @@ public class ClienteDAOTest {
         Cliente cliente = new Cliente();
         cliente.setCpf(56565656565L);
         cliente.setNome("Rodrigo");
+        cliente.setSobrenome("Pires");
         cliente.setCidade("São Paulo");
         cliente.setEnd("End");
         cliente.setEstado("SP");
@@ -100,6 +103,7 @@ public class ClienteDAOTest {
         Cliente cliente = new Cliente();
         cliente.setCpf(56565656565L);
         cliente.setNome("Rodrigo");
+        cliente.setSobrenome("Pires");
         cliente.setCidade("São Paulo");
         cliente.setEnd("End");
         cliente.setEstado("SP");
@@ -128,6 +132,7 @@ public class ClienteDAOTest {
         Cliente cliente = new Cliente();
         cliente.setCpf(56565656565L);
         cliente.setNome("Rodrigo");
+        cliente.setSobrenome("Pires");
         cliente.setCidade("São Paulo");
         cliente.setEnd("End");
         cliente.setEstado("SP");
@@ -139,6 +144,7 @@ public class ClienteDAOTest {
         Cliente cliente1 = new Cliente();
         cliente1.setCpf(56565656569L);
         cliente1.setNome("Rodrigo");
+        cliente1.setSobrenome("Pires1");
         cliente1.setCidade("São Paulo");
         cliente1.setEnd("End");
         cliente1.setEstado("SP");

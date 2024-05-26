@@ -14,6 +14,9 @@ public class Cliente implements Persistente {
     @ColunaTabela(dbName = "nome", setJavaName = "setNome")
     private String nome;
 
+    @ColunaTabela(dbName = "sobrenome", setJavaName = "setSobrenome")
+    private String sobrenome;
+
     @TipoChave("getCpf")
     @ColunaTabela(dbName = "cpf", setJavaName = "setCpf")
     private Long cpf;
@@ -36,8 +39,16 @@ public class Cliente implements Persistente {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
     public Long getCpf() {
         return cpf;
