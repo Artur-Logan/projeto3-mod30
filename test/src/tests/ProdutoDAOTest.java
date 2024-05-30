@@ -43,6 +43,7 @@ public class ProdutoDAOTest {
         produto.setDescricao("Produto " + codigo);
         produto.setNome("Produto " + codigo);
         produto.setValor(BigDecimal.TEN);
+        produto.setMarca("Marca 1");
         produtoDao.cadastrar(produto);
         return produto;
     }
@@ -77,17 +78,30 @@ public class ProdutoDAOTest {
     }
 
     @Test
-    public void alterarCliente() throws TipoChaveNaoEncontradaException, DAOException, MaisDeUmRegistroException, TableException {
-        Produto produto = criarProduto("A4");
-        produto.setNome("Produto Alterado");
-        produtoDao.alterar(produto);
-        Produto produtoBD = this.produtoDao.consultar(produto.getCodigo());
-        assertNotNull(produtoBD);
-        Assert.assertEquals("Produto Alterado", produtoBD.getNome());
+    public void alterarProduto() throws TipoChaveNaoEncontradaException, DAOException, MaisDeUmRegistroException, TableException {
+       Produto produto = new Produto();
+       produto.setNome("Produto 1");
+       produto.setCodigo("1234");
+       produto.setValor(BigDecimal.TEN);
+       produto.setMarca("Marca 1");
+       produto.setDescricao("Descirção");
 
-        excluir(produto.getCodigo());
-        Produto produtoBD1 = this.produtoDao.consultar(produto.getCodigo());
-        assertNull(produtoBD1);
+       Boolean retorno = produtoDao.cadastrar(produto);
+       assertTrue(retorno);
+
+       Produto produtoConsultado = produtoDao.consultar(produto.getCodigo());
+       assertNotNull(produtoConsultado);
+
+       produtoConsultado.setNome("Produto 2");
+       produtoDao.alterar(produtoConsultado);
+
+       Produto produtoAlterado = produtoDao.consultar(produtoConsultado.getCodigo());
+       assertNotNull(produtoAlterado);
+       assertEquals("Produto 2", produtoAlterado.getNome());
+
+       produtoDao.excluir(produto.getCodigo());
+       produtoConsultado = produtoDao.consultar(produto.getCodigo());
+       assertNull(produtoConsultado);
     }
 
     @Test
