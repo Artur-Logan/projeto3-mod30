@@ -1,18 +1,17 @@
-package domain;
+package domain.jpa;
 
-import anotacao.ColunaTabela;
-import anotacao.Tabela;
-import anotacao.TipoChave;
 import dao.Persistente;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@Tabela("TB_VENDA")
-public class Venda implements Persistente {
+@Entity
+@Table(name = "TB_VENDA")
+public class VendaJpa implements Persistente {
 
     public enum Status {
         INICIADA, CONCLUIDA, CANCELADA;
@@ -27,29 +26,41 @@ public class Venda implements Persistente {
         }
     }
 
-    @ColunaTabela(dbName = "id", setJavaName = "setId")
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="venda_seq")
+    @SequenceGenerator(name="venda_seq", sequenceName="sq_venda", initialValue = 1, allocationSize = 1)
     private Long id;
 
-    @TipoChave("getCodigo")
-    @ColunaTabela(dbName = "codigo", setJavaName = "setCodigo")
+    @Column(name = "CODIGO", nullable = false, unique = true)
     private String codigo;
 
-    @ColunaTabela(dbName = "id_cliente_fk", setJavaName = "setIdClienteFk")
-    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente_fk",
+            foreignKey = @ForeignKey(name = "fk_venda_cliente"),
+            referencedColumnName = "id", nullable = false
+    )
+    private ClienteJpa cliente;
 
-    //@ColunaTabela(dbName = "id", setJavaName = "setId")
-    private Set<ProdutoQuantidade> produtos;
+    /*
+     * OBS: Não é uma boa prática utiliar FetchType.EAGER pois ele sempre irá trazer todos os objetos da collection
+     * mesmo sem precisar utilizar. Fazer um método específico para buscar tudo e utilizar quando precisar
+     *
+     * @see IVendaJpaDAO consultarComCollection
+     */
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+    private Set<ProdutoQuantidadeJpa> produtos;
 
-    @ColunaTabela(dbName = "valor_total", setJavaName = "setValorTotal")
+    @Column(name = "VALOR_TOTAL", nullable = false)
     private BigDecimal valorTotal;
 
-    @ColunaTabela(dbName = "data_venda", setJavaName = "setDataVenda")
+    @Column(name = "DATA_VENDA", nullable = false)
     private Instant dataVenda;
 
-    @ColunaTabela(dbName = "status_venda", setJavaName = "setStatus")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS_VENDA", nullable = false)
     private Status status;
 
-    public Venda() {
+    public VendaJpa() {
         produtos = new HashSet<>();
     }
 
@@ -57,33 +68,33 @@ public class Venda implements Persistente {
         return codigo;
     }
 
-
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public Cliente getCliente() {
+    public ClienteJpa getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteJpa cliente) {
         this.cliente = cliente;
     }
 
-    public Set<ProdutoQuantidade> getProdutos() {
+    public Set<ProdutoQuantidadeJpa> getProdutos() {
         return produtos;
     }
 
-    public void adicionarProduto(Produto produto, Integer quantidade) {
+    public void adicionarProduto(ProdutoJpa produto, Integer quantidade) {
         validarStatus();
-        Optional<ProdutoQuantidade> op =
+        Optional<ProdutoQuantidadeJpa> op =
                 produtos.stream().filter(filter -> filter.getProduto().getCodigo().equals(produto.getCodigo())).findAny();
         if (op.isPresent()) {
-            ProdutoQuantidade produtpQtd = op.get();
+            ProdutoQuantidadeJpa produtpQtd = op.get();
             produtpQtd.adicionar(quantidade);
         } else {
             // Criar fabrica para criar ProdutoQuantidade
-            ProdutoQuantidade prod = new ProdutoQuantidade();
+            ProdutoQuantidadeJpa prod = new ProdutoQuantidadeJpa();
+            prod.setVenda(this);
             prod.setProduto(produto);
             prod.adicionar(quantidade);
             produtos.add(prod);
@@ -97,13 +108,13 @@ public class Venda implements Persistente {
         }
     }
 
-    public void removerProduto(Produto produto, Integer quantidade) {
+    public void removerProduto(ProdutoJpa produto, Integer quantidade) {
         validarStatus();
-        Optional<ProdutoQuantidade> op =
+        Optional<ProdutoQuantidadeJpa> op =
                 produtos.stream().filter(filter -> filter.getProduto().getCodigo().equals(produto.getCodigo())).findAny();
 
         if (op.isPresent()) {
-            ProdutoQuantidade produtpQtd = op.get();
+            ProdutoQuantidadeJpa produtpQtd = op.get();
             if (produtpQtd.getQuantidade()>quantidade) {
                 produtpQtd.remover(quantidade);
                 recalcularValorTotalVenda();
@@ -111,6 +122,7 @@ public class Venda implements Persistente {
                 produtos.remove(op.get());
                 recalcularValorTotalVenda();
             }
+
         }
     }
 
@@ -130,7 +142,7 @@ public class Venda implements Persistente {
     public void recalcularValorTotalVenda() {
         //validarStatus();
         BigDecimal valorTotal = BigDecimal.ZERO;
-        for (ProdutoQuantidade prod : this.produtos) {
+        for (ProdutoQuantidadeJpa prod : this.produtos) {
             valorTotal = valorTotal.add(prod.getValorTotal());
         }
         this.valorTotal = valorTotal;
@@ -168,7 +180,7 @@ public class Venda implements Persistente {
         this.valorTotal = valorTotal;
     }
 
-    public void setProdutos(Set<ProdutoQuantidade> produtos) {
+    public void setProdutos(Set<ProdutoQuantidadeJpa> produtos) {
         this.produtos = produtos;
     }
 
