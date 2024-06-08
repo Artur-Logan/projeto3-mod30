@@ -1,15 +1,15 @@
 package tests;
 
 import dao.ClienteDaoMock;
-import dao.IClienteDAO;
-import domain.Cliente;
-import exceptions.DAOException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.IClienteDAO;
+import main.br.com.artur.domain.Cliente;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import services.ClienteService;
-import services.IClienteService;
+import main.br.com.artur.services.ClienteService;
+import main.br.com.artur.services.IClienteService;
 
 public class ClienteServiceTest {
 

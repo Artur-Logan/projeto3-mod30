@@ -1,14 +1,14 @@
 package tests;
 
-import dao.*;
-import dao.generic.jdbc.ConnectionFactory;
-import domain.Cliente;
-import domain.Produto;
-import domain.Venda;
-import exceptions.DAOException;
-import exceptions.MaisDeUmRegistroException;
-import exceptions.TableException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.*;
+import main.br.com.artur.dao.generic.jdbc.ConnectionFactory;
+import main.br.com.artur.domain.Cliente;
+import main.br.com.artur.domain.Produto;
+import main.br.com.artur.domain.Venda;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.MaisDeUmRegistroException;
+import main.br.com.artur.exceptions.TableException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

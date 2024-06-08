@@ -1,10 +1,10 @@
 package dao;
 
-import dao.generic.jpa.GenericJpaDAO;
-import dao.jpa.IVendaJpaDAO;
-import domain.jpa.VendaJpa;
-import exceptions.DAOException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.generic.jpa.GenericJpaDAO;
+import main.br.com.artur.dao.jpa.IVendaJpaDAO;
+import main.br.com.artur.domain.jpa.VendaJpa;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 
 public class VendaExclusaoJpaDAO extends GenericJpaDAO<VendaJpa, Long> implements IVendaJpaDAO {
 

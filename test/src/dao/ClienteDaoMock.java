@@ -1,7 +1,8 @@
 package dao;
 
-import domain.Cliente;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.IClienteDAO;
+import main.br.com.artur.domain.Cliente;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 
 import java.util.Collection;
 

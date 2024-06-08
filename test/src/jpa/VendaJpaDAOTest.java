@@ -1,14 +1,14 @@
 package jpa;
 
 import dao.VendaExclusaoJpaDAO;
-import dao.jpa.*;
-import domain.jpa.ClienteJpa;
-import domain.jpa.ProdutoJpa;
-import domain.jpa.VendaJpa;
-import exceptions.DAOException;
-import exceptions.MaisDeUmRegistroException;
-import exceptions.TableException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.jpa.*;
+import main.br.com.artur.domain.jpa.ClienteJpa;
+import main.br.com.artur.domain.jpa.ProdutoJpa;
+import main.br.com.artur.domain.jpa.VendaJpa;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.MaisDeUmRegistroException;
+import main.br.com.artur.exceptions.TableException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

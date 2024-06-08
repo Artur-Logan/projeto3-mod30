@@ -1,12 +1,12 @@
 package tests;
 
-import dao.ClienteDAO;
-import dao.IClienteDAO;
-import domain.Cliente;
-import exceptions.DAOException;
-import exceptions.MaisDeUmRegistroException;
-import exceptions.TableException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.ClienteDAO;
+import main.br.com.artur.dao.IClienteDAO;
+import main.br.com.artur.domain.Cliente;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.MaisDeUmRegistroException;
+import main.br.com.artur.exceptions.TableException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

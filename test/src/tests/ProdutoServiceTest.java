@@ -1,15 +1,15 @@
 package tests;
 
-import dao.IProdutoDAO;
+import main.br.com.artur.dao.IProdutoDAO;
 import dao.ProdutoDaoMock;
-import domain.Produto;
-import exceptions.DAOException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.domain.Produto;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import services.IProdutoService;
-import services.ProdutoService;
+import main.br.com.artur.services.IProdutoService;
+import main.br.com.artur.services.ProdutoService;
 
 import java.math.BigDecimal;
 

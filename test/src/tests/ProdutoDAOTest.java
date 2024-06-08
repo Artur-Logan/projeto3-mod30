@@ -1,14 +1,13 @@
 package tests;
 
-import dao.IProdutoDAO;
-import dao.ProdutoDAO;
-import domain.Produto;
-import exceptions.DAOException;
-import exceptions.MaisDeUmRegistroException;
-import exceptions.TableException;
-import exceptions.TipoChaveNaoEncontradaException;
+import main.br.com.artur.dao.IProdutoDAO;
+import main.br.com.artur.dao.ProdutoDAO;
+import main.br.com.artur.domain.Produto;
+import main.br.com.artur.exceptions.DAOException;
+import main.br.com.artur.exceptions.MaisDeUmRegistroException;
+import main.br.com.artur.exceptions.TableException;
+import main.br.com.artur.exceptions.TipoChaveNaoEncontradaException;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
